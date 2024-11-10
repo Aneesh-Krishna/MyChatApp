@@ -1,4 +1,4 @@
-ECHO is on.
+
 # Ignore appsettings.json (if it contains sensitive data like keys)
 appsettings.json
 
