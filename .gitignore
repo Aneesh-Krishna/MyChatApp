@@ -1,0 +1,12 @@
+ECHO is on.
+# Ignore appsettings.json (if it contains sensitive data like keys)
+appsettings.json
+
+# Ignore build directories
+/bin/
+/obj/
+
+# Ignore user-specific files
+*.user
+*.userosscache
+*.suo
