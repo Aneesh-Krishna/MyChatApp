@@ -9,7 +9,7 @@ namespace MyChatApp.Services
         public FileService(IConfiguration configuration)
         {
             var blobServiceClient = new BlobServiceClient(configuration["AzureBlobStorage:ConnectionString"]);
-            _blobContainerClient = blobServiceClient.GetBlobContainerClient(configuration["AzureBlobStorage:mychatapp"]);
+            _blobContainerClient = blobServiceClient.GetBlobContainerClient(configuration["AzureBlobStorage:ContainerName"]);
             _blobContainerClient.CreateIfNotExists();
         }
 

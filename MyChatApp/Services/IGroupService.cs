@@ -7,6 +7,7 @@ namespace MyChatApp.Services
         Task<bool> RemoveUserFromGroup(string UserId, Guid GroupId);
         Task<Group> CreateGroup(string groupName);
         Task<List<ApplicationUser?>> GetGroupMembers(Guid GroupId);
+        Task<List<Group?>> GetGroups(string UserId);
         Task<bool> DeleteGroup(Guid GroupId);
     }
 }

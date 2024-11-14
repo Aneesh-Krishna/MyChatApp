@@ -62,6 +62,11 @@
       {
         "Name": "groupId",
         "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "groupId",
+        "Type": "",
         "IsRequired": true
       }
     ],
@@ -81,8 +86,8 @@
         "IsRequired": false
       },
       {
-        "Name": "userId",
-        "Type": "System.String",
+        "Name": "request",
+        "Type": "MyChatApp.Controllers.AddUserToGroupRequest",
         "IsRequired": true
       }
     ],
@@ -97,9 +102,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "groupName",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "group",
+        "Type": "MyChatApp.Models.Group",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -122,6 +127,16 @@
   },
   {
     "ContainingType": "MyChatApp.Controllers.GroupController",
+    "Method": "GetGroups",
+    "RelativePath": "api/Group/GetGroups",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyChatApp.Controllers.GroupController",
     "Method": "RemoveUserFromGroup",
     "RelativePath": "api/Group/RemoveUserFromGroup",
     "HttpMethod": "POST",
@@ -134,8 +149,8 @@
         "IsRequired": false
       },
       {
-        "Name": "userId",
-        "Type": "System.String",
+        "Name": "request",
+        "Type": "MyChatApp.Controllers.AddUserToGroupRequest",
         "IsRequired": true
       }
     ],
@@ -192,19 +207,49 @@
   {
     "ContainingType": "MyChatApp.Controllers.MessageController",
     "Method": "SendGroupMessage",
-    "RelativePath": "api/Message/SendToGroup",
+    "RelativePath": "api/Message/SendMessageToGroup",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "message",
-        "Type": "MyChatApp.Models.Message",
-        "IsRequired": true
+        "Name": "GroupId",
+        "Type": "System.Guid",
+        "IsRequired": false
       },
       {
-        "Name": "file",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "Name": "Content",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ContentType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ContentDisposition",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Headers",
+        "Type": "Microsoft.AspNetCore.Http.IHeaderDictionary",
+        "IsRequired": false
+      },
+      {
+        "Name": "Length",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FileName",
+        "Type": "System.String",
         "IsRequired": false
       }
     ],
@@ -213,19 +258,49 @@
   {
     "ContainingType": "MyChatApp.Controllers.MessageController",
     "Method": "SendPrivateMessage",
-    "RelativePath": "api/Message/SendToUser",
+    "RelativePath": "api/Message/SendMessageToUser",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "message",
-        "Type": "MyChatApp.Models.Message",
-        "IsRequired": true
+        "Name": "RecipientId",
+        "Type": "System.String",
+        "IsRequired": false
       },
       {
-        "Name": "file",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "Name": "Content",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ContentType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ContentDisposition",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Headers",
+        "Type": "Microsoft.AspNetCore.Http.IHeaderDictionary",
+        "IsRequired": false
+      },
+      {
+        "Name": "Length",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FileName",
+        "Type": "System.String",
         "IsRequired": false
       }
     ],

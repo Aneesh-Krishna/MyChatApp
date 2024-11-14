@@ -32,11 +32,6 @@ namespace MyChatApp.Services
 
         public async Task<List<Message>> SendMessageToGroup(string SenderId, Guid GroupId, string Content, string? FileUrl = null)
         {
-            bool IsMember = await _context.GroupMembers.AnyAsync(gm => gm.GroupId == GroupId && gm.UserId == SenderId);
-            if(!IsMember)
-            {
-                throw new UnauthorizedAccessException("Sender is not a member of the group");
-            }
 
             var groupMembes = await _context.GroupMembers
                 .Where(gm => gm.GroupId == GroupId)

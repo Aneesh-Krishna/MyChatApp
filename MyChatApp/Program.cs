@@ -38,7 +38,7 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true,
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"] ?? "SuperExtraLongJWTSecretKeyForSigningJWTokens"))
     };
 });
 
@@ -50,15 +50,33 @@ builder.Services.AddAuthorization(options =>
             context.User.HasClaim(c => c.Type == "UserId")));
 });
 
+// Enable CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder => builder.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader());
+});
+
+builder.Services.AddScoped<IApplicationBuilder, ApplicationBuilder>();
+builder.Services.AddScoped<IGroupService, GroupService>();
+builder.Services.AddScoped<IMessageService, MessageService>();
 
 //Configure SignalR
 builder.Services.AddSignalR();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+    });
+
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseCors("AllowAllOrigins");
 
 app.UseHttpsRedirection();
 

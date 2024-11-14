@@ -37,9 +37,15 @@ namespace MyChatApp.Hubs
         // Send a private message
         public async Task SendMessageToUser(string recipientId, string messageContent, string? fileUrl = null)
         {
+            var senderId = Context.UserIdentifier;
+            if (senderId == null)
+            {
+                await Clients.Caller.SendAsync("Error", "User is not authenticated.");
+                return;
+            }
             try
             {
-                var message = await _messageService.SendMessageToUser(Context.UserIdentifier, recipientId, messageContent, fileUrl);
+                var message = await _messageService.SendMessageToUser(senderId, recipientId, messageContent, fileUrl);
                 await Clients.User(recipientId).SendAsync("ReceiveMessage", message);
                 await Clients.Caller.SendAsync("MessageSent", message); // Confirmation to sender
             }
@@ -53,9 +59,15 @@ namespace MyChatApp.Hubs
         // Send a group message
         public async Task SendMessageToGroup(Guid groupId, string messageContent, string? fileUrl = null)
         {
+            var senderId = Context.UserIdentifier;
+            if (senderId == null)
+            {
+                await Clients.Caller.SendAsync("Error", "User is not authenticated.");
+                return;
+            }
             try
             {
-                var message = await _messageService.SendMessageToGroup(Context.UserIdentifier, groupId, messageContent, fileUrl);
+                var message = await _messageService.SendMessageToGroup(senderId, groupId, messageContent, fileUrl);
                 await Clients.Group(groupId.ToString()).SendAsync("ReceiveGroupMessage", message);
             }
             catch (Exception ex)
@@ -69,6 +81,10 @@ namespace MyChatApp.Hubs
         public async Task AddUserToGroup(Guid groupId)
         {
             var userId = Context.UserIdentifier;
+            if (userId == null)
+            {
+                throw new UnauthorizedAccessException("Not authorized!");
+            }
             var success = await _groupService.AddUserToGroup(userId, groupId);
             if (success)
             {
@@ -85,6 +101,10 @@ namespace MyChatApp.Hubs
         public async Task RemoveUserFromGroup(Guid groupId)
         {
             var userId = Context.UserIdentifier;
+            if (userId == null)
+            {
+                throw new UnauthorizedAccessException("Not authorized!");
+            }
             var success = await _groupService.RemoveUserFromGroup(userId, groupId);
             if (success)
             {

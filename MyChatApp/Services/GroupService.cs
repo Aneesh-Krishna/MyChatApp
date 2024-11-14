@@ -74,6 +74,15 @@ namespace MyChatApp.Services
                 .ToListAsync();
         }
 
+        //Get all the groups of a member
+        public async Task<List<Group?>> GetGroups(string UserId)
+        {
+            return await _context.GroupMembers
+                .Where(gm => (gm.UserId == UserId))
+                .Select(gm => gm.Group)
+                .ToListAsync();
+        }
+
         //Delete a group
         public async Task<bool> DeleteGroup(Guid GroupId)
         {

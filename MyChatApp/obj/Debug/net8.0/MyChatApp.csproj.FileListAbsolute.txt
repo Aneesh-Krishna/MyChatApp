@@ -1,5 +1,4 @@
 C:\Users\aneea\source\repos\MyChatApp\MyChatApp\bin\Debug\net8.0\appsettings.Development.json
-C:\Users\aneea\source\repos\MyChatApp\MyChatApp\bin\Debug\net8.0\appsettings.json
 C:\Users\aneea\source\repos\MyChatApp\MyChatApp\bin\Debug\net8.0\MyChatApp.exe
 C:\Users\aneea\source\repos\MyChatApp\MyChatApp\bin\Debug\net8.0\MyChatApp.deps.json
 C:\Users\aneea\source\repos\MyChatApp\MyChatApp\bin\Debug\net8.0\MyChatApp.runtimeconfig.json
@@ -158,3 +157,5 @@ C:\Users\aneea\source\repos\MyChatApp\MyChatApp\bin\Debug\net8.0\Microsoft.Kiota
 C:\Users\aneea\source\repos\MyChatApp\MyChatApp\bin\Debug\net8.0\Microsoft.Kiota.Serialization.Text.dll
 C:\Users\aneea\source\repos\MyChatApp\MyChatApp\bin\Debug\net8.0\Std.UriTemplate.dll
 C:\Users\aneea\source\repos\MyChatApp\MyChatApp\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\aneea\source\repos\MyChatApp\MyChatApp\obj\Debug\net8.0\MyChatApp.sourcelink.json
+C:\Users\aneea\source\repos\MyChatApp\MyChatApp\bin\Debug\net8.0\appsettings.json

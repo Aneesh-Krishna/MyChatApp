@@ -5,50 +5,60 @@ using MyChatApp.Hubs;
 using Microsoft.AspNetCore.SignalR;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using MyChatApp.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyChatApp.Controllers
 {
+    [Authorize]
     [ApiController]
-    [Authorize(Policy = "CanDeleteMessage")]
     [Route("api/[controller]")]
     public class MessageController : Controller
     {
         private readonly IMessageService _messageService;
         private readonly FileService _fileService;
         private readonly IHubContext<ChatHub> _chatHub;
+        private readonly ChatDbContext _context;
 
-        public MessageController(IMessageService messageService, FileService fileService, IHubContext<ChatHub> chatHub)
+        public MessageController(IMessageService messageService, FileService fileService, IHubContext<ChatHub> chatHub, ChatDbContext context)
         {
             _messageService = messageService;
             _fileService = fileService;
             _chatHub = chatHub;
+            _context = context;
         }
 
-        [HttpPost("SendToUser")]
-        public async Task<IActionResult> SendPrivateMessage([FromBody] Message message, IFormFile? file = null)
+        [HttpPost("SendMessageToUser")]
+        public async Task<IActionResult> SendPrivateMessage([FromForm] string RecipientId, [FromForm] string Content,[FromForm] IFormFile? file = null)
         {
+            if (string.IsNullOrWhiteSpace(Content) || string.IsNullOrWhiteSpace(RecipientId))
+            {
+                return BadRequest("RecipientId and Content are required.");
+            }
+
             string? fileUrl = null;
+
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null) return Unauthorized("User ID not found.");
+
             if (file != null)
             {
                 fileUrl = await _fileService.UploadFileAsync(file);
                 if (fileUrl == null) return BadRequest("File upload failed");
             }
 
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (userId == null) return Unauthorized("User ID not found.");
-
-            var msg = await _messageService.SendMessageToUser(userId, message.RecipientId, message.Content, fileUrl);
+            var msg = await _messageService.SendMessageToUser(userId, RecipientId, Content, fileUrl);
             if (msg == null) return BadRequest("Failed to send message");
 
-            await _chatHub.Clients.User(message.RecipientId).SendAsync("ReceiveMessage", msg);
+            await _chatHub.Clients.User(RecipientId).SendAsync("ReceiveMessage", msg);
 
             return Ok(msg);
         }
 
-        [HttpPost("SendToGroup")]
-        public async Task<IActionResult> SendGroupMessage([FromBody] Message message, IFormFile? file = null)
+        [HttpPost("SendMessageToGroup")]
+        public async Task<IActionResult> SendGroupMessage([FromForm] Guid GroupId, [FromForm] string Content,[FromForm] IFormFile? file = null)
         {
-            if (message.GroupId == null) return BadRequest("No group selected.");
+            if (string.IsNullOrWhiteSpace(GroupId.ToString()) || string.IsNullOrWhiteSpace(Content)) return BadRequest("No group selected/No content.");
 
             string? fileUrl = null;
             if (file != null)
@@ -59,11 +69,20 @@ namespace MyChatApp.Controllers
 
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (userId == null) return Unauthorized("User ID not found.");
+            Console.WriteLine($"Retrieved UserId: {userId}");
 
-            var msg = await _messageService.SendMessageToGroup(userId, message.GroupId.Value, message.Content, fileUrl);
+            var IsMember = await _context.GroupMembers
+                .Where(gm => (gm.GroupId == GroupId && gm.UserId == userId))
+                .FirstOrDefaultAsync() != null;
+            if (!IsMember)
+            {
+                throw new UnauthorizedAccessException("Not a member of the group");
+            }
+
+            var msg = await _messageService.SendMessageToGroup(userId, GroupId, Content, fileUrl);
             if (msg == null) return BadRequest("Failed to send message");
 
-            await _chatHub.Clients.Group(message.GroupId.ToString()).SendAsync("ReceiveGroupMessage", msg);
+            await _chatHub.Clients.Group(GroupId.ToString()).SendAsync("ReceiveGroupMessage", msg);
 
             return Ok(msg);
         }
@@ -73,6 +92,19 @@ namespace MyChatApp.Controllers
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (userId == null) return Unauthorized("User ID not found.");
+
+            var hasGroupId = await _context.Messages
+                .Where(m => (m.MessageId == messageId && m.GroupId != null))
+                .Select(m => m.GroupId)
+                .FirstOrDefaultAsync();
+            if(hasGroupId != null)
+            {
+                var IsMember = await _context.GroupMembers
+                    .Where(gm => (gm.GroupId == hasGroupId && gm.UserId == userId))
+                    .FirstOrDefaultAsync() != null;
+                if (!IsMember)
+                    return Unauthorized("Not a member of the group.");
+            }
 
             var success = await _messageService.DeleteMessage(userId, messageId);
             if (!success) return Forbid("You are not authorized to delete this message.");
@@ -92,7 +124,7 @@ namespace MyChatApp.Controllers
         }
 
         [HttpGet("GetMessagesWithUser")]
-        public async Task<IActionResult> GetMessagesWithUser(string recipientId)
+        public async Task<IActionResult> GetMessagesWithUser([FromQuery] string recipientId)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (userId == null) return Unauthorized("User ID not found.");
@@ -102,8 +134,22 @@ namespace MyChatApp.Controllers
         }
 
         [HttpGet("GetGroupMessages")]
-        public async Task<IActionResult> GetGroupMessages(Guid groupId)
+        public async Task<IActionResult> GetGroupMessages([FromQuery] Guid groupId)
         {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+            {
+                return Unauthorized("UserId is not found.");
+            }
+
+            var IsMember = await _context.GroupMembers
+                .Where(gm => (gm.GroupId == groupId && gm.UserId == userId))
+                .FirstOrDefaultAsync() != null;
+            if (!IsMember)
+            {
+                return Unauthorized("You're not a member of the group.");
+            }
+
             var messages = await _messageService.GetMessagesForGroup(groupId);
             return Ok(messages);
         }

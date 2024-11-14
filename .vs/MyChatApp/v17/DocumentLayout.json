@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\aneea\\source\\repos\\MyChatApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BBE1D576-C576-4305-B784-3EF3A5623010}|MyChatApp\\MyChatApp.csproj|c:\\users\\aneea\\source\\repos\\mychatapp\\mychatapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{BBE1D576-C576-4305-B784-3EF3A5623010}|MyChatApp\\MyChatApp.csproj|solutionrelative:mychatapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{BBE1D576-C576-4305-B784-3EF3A5623010}|MyChatApp\\MyChatApp.csproj|c:\\users\\aneea\\source\\repos\\mychatapp\\mychatapp\\services\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BBE1D576-C576-4305-B784-3EF3A5623010}|MyChatApp\\MyChatApp.csproj|solutionrelative:mychatapp\\services\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BBE1D576-C576-4305-B784-3EF3A5623010}|MyChatApp\\MyChatApp.csproj|c:\\users\\aneea\\source\\repos\\mychatapp\\mychatapp\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BBE1D576-C576-4305-B784-3EF3A5623010}|MyChatApp\\MyChatApp.csproj|solutionrelative:mychatapp\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BBE1D576-C576-4305-B784-3EF3A5623010}|MyChatApp\\MyChatApp.csproj|c:\\users\\aneea\\source\\repos\\mychatapp\\mychatapp\\controllers\\messagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BBE1D576-C576-4305-B784-3EF3A5623010}|MyChatApp\\MyChatApp.csproj|solutionrelative:mychatapp\\controllers\\messagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BBE1D576-C576-4305-B784-3EF3A5623010}|MyChatApp\\MyChatApp.csproj|c:\\users\\aneea\\source\\repos\\mychatapp\\mychatapp\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BBE1D576-C576-4305-B784-3EF3A5623010}|MyChatApp\\MyChatApp.csproj|solutionrelative:mychatapp\\controllers\\groupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BBE1D576-C576-4305-B784-3EF3A5623010}|MyChatApp\\MyChatApp.csproj|c:\\users\\aneea\\source\\repos\\mychatapp\\mychatapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BBE1D576-C576-4305-B784-3EF3A5623010}|MyChatApp\\MyChatApp.csproj|solutionrelative:mychatapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BBE1D576-C576-4305-B784-3EF3A5623010}|MyChatApp\\MyChatApp.csproj|c:\\users\\aneea\\source\\repos\\mychatapp\\mychatapp\\services\\groupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BBE1D576-C576-4305-B784-3EF3A5623010}|MyChatApp\\MyChatApp.csproj|solutionrelative:mychatapp\\services\\groupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ChatHub.cs",
-              "DocumentMoniker": "C:\\Users\\aneea\\source\\repos\\MyChatApp\\MyChatApp\\Hubs\\ChatHub.cs",
-              "RelativeDocumentMoniker": "MyChatApp\\Hubs\\ChatHub.cs",
-              "ToolTip": "C:\\Users\\aneea\\source\\repos\\MyChatApp\\MyChatApp\\Hubs\\ChatHub.cs",
-              "RelativeToolTip": "MyChatApp\\Hubs\\ChatHub.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAALQAAAAAAAAAAAAAAA==",
+              "Title": "MessageController.cs",
+              "DocumentMoniker": "C:\\Users\\aneea\\source\\repos\\MyChatApp\\MyChatApp\\Controllers\\MessageController.cs",
+              "RelativeDocumentMoniker": "MyChatApp\\Controllers\\MessageController.cs",
+              "ToolTip": "C:\\Users\\aneea\\source\\repos\\MyChatApp\\MyChatApp\\Controllers\\MessageController.cs",
+              "RelativeToolTip": "MyChatApp\\Controllers\\MessageController.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAgwIgAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-10T06:39:39.58Z",
+              "WhenOpened": "2024-11-13T13:27:14.684Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\aneea\\source\\repos\\MyChatApp\\MyChatApp\\Program.cs",
+              "RelativeDocumentMoniker": "MyChatApp\\Program.cs",
+              "ToolTip": "C:\\Users\\aneea\\source\\repos\\MyChatApp\\MyChatApp\\Program.cs",
+              "RelativeToolTip": "MyChatApp\\Program.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAEkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T12:53:55.003Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GroupService.cs",
+              "DocumentMoniker": "C:\\Users\\aneea\\source\\repos\\MyChatApp\\MyChatApp\\Services\\GroupService.cs",
+              "RelativeDocumentMoniker": "MyChatApp\\Services\\GroupService.cs",
+              "ToolTip": "C:\\Users\\aneea\\source\\repos\\MyChatApp\\MyChatApp\\Services\\GroupService.cs",
+              "RelativeToolTip": "MyChatApp\\Services\\GroupService.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAowFIAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T12:22:40.491Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GroupController.cs",
+              "DocumentMoniker": "C:\\Users\\aneea\\source\\repos\\MyChatApp\\MyChatApp\\Controllers\\GroupController.cs",
+              "RelativeDocumentMoniker": "MyChatApp\\Controllers\\GroupController.cs",
+              "ToolTip": "C:\\Users\\aneea\\source\\repos\\MyChatApp\\MyChatApp\\Controllers\\GroupController.cs",
+              "RelativeToolTip": "MyChatApp\\Controllers\\GroupController.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAiwD4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T12:16:30.88Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\aneea\\source\\repos\\MyChatApp\\MyChatApp\\appsettings.json",
-              "RelativeDocumentMoniker": "MyChatApp\\appsettings.json",
-              "ToolTip": "C:\\Users\\aneea\\source\\repos\\MyChatApp\\MyChatApp\\appsettings.json",
-              "RelativeToolTip": "MyChatApp\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-11-10T05:39:58.624Z",
+              "Title": "MessageService.cs",
+              "DocumentMoniker": "C:\\Users\\aneea\\source\\repos\\MyChatApp\\MyChatApp\\Services\\MessageService.cs",
+              "RelativeDocumentMoniker": "MyChatApp\\Services\\MessageService.cs",
+              "ToolTip": "C:\\Users\\aneea\\source\\repos\\MyChatApp\\MyChatApp\\Services\\MessageService.cs",
+              "RelativeToolTip": "MyChatApp\\Services\\MessageService.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAmwFQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T17:27:45.727Z",
               "EditorCaption": ""
             }
           ]
